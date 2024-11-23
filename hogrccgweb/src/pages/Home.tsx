@@ -14,7 +14,7 @@ const Home = () => {
            <div>
            <NavBar  headerStyle={`w-full z-20 ${isFixed ? 'fixed top-0 left-0 bg-[#000000] animate-slideDown' : 'absolute top-0 left-0 bg-transparent'}`}/>
             <Hero/>
-            <div className="px-14">
+            <div className="md:px-14 px-8">
                 <Welcome />
                 <ImageCarousel />
                 <UpcomingEvents />

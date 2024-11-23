@@ -5,7 +5,6 @@ export interface EventData {
     description: string;
     image: string;
     date: string;
-    logo: string;
   }
 
   interface ImageData {
@@ -22,7 +21,6 @@ export interface EventData {
       description: " Its our Hog Dinner and Award night and we are Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, repellendus perferendis animi, minus id quia eveniet necessitatibus, repellat in doloribus dignissimos consequuntur? Odit ex corporis architecto doloribus iste ab, porro fuga aliquid exercitationem, molestias non! Adipisci omnis et, libero maxime, necessitatibus vel quas aliquid quaerat provident nostrum, esse reprehenderit molestias!.",
       image: "https://www.dropbox.com/scl/fi/exlokypfq4ugef2k4tsbw/IMG-20241123-WA0000.jpg?rlkey=9mm5ec1mmpg5qsjutvfpnzeiw&st=udxbtncc&raw=1",
       date: "December 1st, 2024",
-      logo: ""
     },
     {
       id: 2,
@@ -30,7 +28,6 @@ export interface EventData {
       description: " Its our Hog Dinner and Award night and we are Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, repellendus perferendis animi, minus id quia eveniet necessitatibus, repellat in doloribus dignissimos consequuntur? Odit ex corporis architecto doloribus iste ab, porro fuga aliquid exercitationem, molestias non! Adipisci omnis et, libero maxime, necessitatibus vel quas aliquid quaerat provident nostrum, esse reprehenderit molestias!.",
       image: "https://www.dropbox.com/scl/fi/exlokypfq4ugef2k4tsbw/IMG-20241123-WA0000.jpg?rlkey=9mm5ec1mmpg5qsjutvfpnzeiw&st=udxbtncc&raw=1",
       date: "December 1st, 2024",
-      logo: ""
     },
     {
       id: 3,
@@ -38,7 +35,6 @@ export interface EventData {
       description: " Its our Hog Dinner and Award night and we are Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, repellendus perferendis animi, minus id quia eveniet necessitatibus, repellat in doloribus dignissimos consequuntur? Odit ex corporis architecto doloribus iste ab, porro fuga aliquid exercitationem, molestias non! Adipisci omnis et, libero maxime, necessitatibus vel quas aliquid quaerat provident nostrum, esse reprehenderit molestias!.",
       image: "https://www.dropbox.com/scl/fi/exlokypfq4ugef2k4tsbw/IMG-20241123-WA0000.jpg?rlkey=9mm5ec1mmpg5qsjutvfpnzeiw&st=udxbtncc&raw=1",
       date: "December 1st, 2024",
-      logo:""
     },
   ];
 

@@ -37,7 +37,7 @@ const UpcomingEvents = () => {
         gap: 2,
       }}>
         {Eventdata.map((event) => (
-             <Card variant="outlined" sx={{width: 400}} key={event.id}>
+             <Card variant="outlined" sx={{}} key={event.id}>
              <AspectRatio>
                  <div>
                      <img
@@ -79,10 +79,9 @@ const UpcomingEvents = () => {
                  </Typography>
                  <div className="flex items-center justify-between pt-3 ">
                      <div className="flex items-center space-x-1">
-                     <img src={event.logo} className="h-7  rounded-[100px]" alt="Logo"/>
-                     <p className="font-paragraphFont text-[14px]">{event.date}</p>
+                     <p className="font-paragraphFont md:text-[14px] text-[10px]">{event.date}</p>
                      </div>
-                 <CustomButton txt="Read more" to="/events" btnStyle="py-[7px]" txtStyle="text-[13px] uppercase"/>
+                 <CustomButton txt="Read more" to="/events" btnStyle="md:py-[7px] py-[5px]" txtStyle="md:text-[13px] text-[10px] uppercase"/>
                  </div>
              </div>
          </Card>
