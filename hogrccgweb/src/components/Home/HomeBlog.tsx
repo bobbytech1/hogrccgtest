@@ -10,7 +10,7 @@ import { BlogData } from "../../data";
 const HomeBlog = () => {
     return ( 
         <>
-            <div className="mt-6">
+            <div className="mt-6 md:px-10 px-6">
             <div className="flex lgx:flex-row flex-col lgx:items-center items-start space-y-6 justify-between lgx:space-x-11 mb-10">
           <div className="lgx:w-[50%] xssm:w-[90%] w-[100%] space-y-2">
             <h3 className="font-headingFont xssm:text-[18px] text-[16px] font-medium uppercase">
@@ -37,11 +37,11 @@ const HomeBlog = () => {
         <Box sx={{
         width: '100%',
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 400px), 1fr))',
         gap: 2,
       }}>
         {BlogData.map((blog) => (
-             <Card variant="outlined" sx={{}} key={blog.id}>
+             <Card variant="outlined" sx={{backgroundColor: "#ffffff"}} key={blog.id}>
              <AspectRatio>
                  <div>
                      <img

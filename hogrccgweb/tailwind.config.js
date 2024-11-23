@@ -17,7 +17,7 @@ export default {
         hogblue: "#0045B5"
       },
       screens :{
-        'xssm': "380px",
+        'xxm': "380px",
         'xsm': "400px",
         'xssm': "480px",
         'xmd' : "800px",

@@ -18,10 +18,10 @@ const Hero = () => {
 
 {/* Content Overlay */}
 <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-8">
-  <h1 className="xssm:text-5xl text-5xl md:text-7xl lg:text-8xl font-bold mb-4 capitalize font-headingFont xl:w-[80%] xssm:w-[90%] w-[100%]">
+  <h1 className="xssm:text-5xl xxm:text-5xl text-3xl md:text-7xl lg:text-8xl font-bold mb-4 capitalize font-headingFont xl:w-[80%] xssm:w-[90%] w-[100%]">
     Spreading awareness of God
   </h1>
-  <p className="text-[20px] xssm:text-2xl md:text-3xl md:w-[80%] w-[90%] font-paragraphFont mb-4">
+  <p className="xxm:text-[20px] text-[18px] xssm:text-2xl md:text-3xl md:w-[80%] w-[90%] font-paragraphFont mb-4">
     Come together with us at the Redeemed Christian Church of God (Hope of Glory) to encourage each other in loving God and spreading goodness.
   </p>
   <a href="https://maps.app.goo.gl/3s8wUfJ4FEBvtizR6" target="_blank" rel="noopener noreferrer" className="font-linkFont flex items-center underline">

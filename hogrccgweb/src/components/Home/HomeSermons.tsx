@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const HomeSermons = () => {
   return (
     <>
-      <div className="mt-6 mb-14">
+      <div className="mt-6 mb-14 md:px-10 px-6">
         <div className="flex lgx:flex-row flex-col lgx:items-center items-start space-y-6 justify-between lgx:space-x-11">
           <div className="lgx:w-[50%] xssm:w-[90%] w-[100%] space-y-2">
             <h3 className="font-headingFont xssm:text-[18px] text-[16px] font-medium">

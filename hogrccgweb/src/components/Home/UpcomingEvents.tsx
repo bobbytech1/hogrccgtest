@@ -10,7 +10,7 @@ import { Box } from "@mui/joy";
 const UpcomingEvents = () => {
     return (
         <>
-            <div className="my-14">
+            <div className="my-14 md:px-10 px-6 pb-12 bg-[#FFFFFF] pt-6">
                 {/* Events heading content  */}
                 <div className="flex lgx:flex-row flex-col lgx:items-center items-start space-y-6 justify-between lgx:space-x-11">
                     <div className="lgx:w-[50%] xssm:w-[90%] w-[100%] space-y-2">
@@ -33,11 +33,11 @@ const UpcomingEvents = () => {
                     <Box sx={{
         width: '100%',
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 400px), 1fr))',
         gap: 2,
       }}>
         {Eventdata.map((event) => (
-             <Card variant="outlined" sx={{}} key={event.id}>
+             <Card variant="outlined" sx={{backgroundColor: "#ffffff"}} key={event.id}>
              <AspectRatio>
                  <div>
                      <img

@@ -41,7 +41,8 @@ const ImageCarousel:  React.FC =() => {
   };
 
   return (
-<div className="relative w-full max-w-4xl mx-auto pt-40">
+    <div className="md:px-10 px-6">
+      <div className="relative w-full max-w-4xl mx-auto pt-40">
       {/* React Slick Carousel */}
       <Slider {...settings}>
         {ImageData.map((image) => (
@@ -58,6 +59,8 @@ const ImageCarousel:  React.FC =() => {
         ))}
       </Slider>
     </div>
+    </div>
+
   );
 };
 

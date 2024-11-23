@@ -5,7 +5,7 @@ import CustomButton from "../Button/CustomButton";
 const HomeMinistries = () => {
     return ( 
         <>
-            <div className="mt-6">
+            <div className="mt-6 md:px-10 px-6 pb-12 bg-[#FFFFFF] pt-6">
             <div className="flex lgx:flex-row flex-col lgx:items-center items-start space-y-6 justify-between lgx:space-x-11">
           <div className="lgx:w-[50%] xssm:w-[90%] w-[100%] space-y-2">
             <h3 className="font-headingFont xssm:text-[18px] text-[16px] font-medium uppercase">
@@ -31,7 +31,7 @@ const HomeMinistries = () => {
 
         {/* Ministries section */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 p-6 mt-5">
+        <div className="grid grid-cols-1 lgx:grid-cols-2 gap-8 mt-5">
       {MinistriesData.map((ministry) => (
         <div
           key={ministry.id}
