@@ -9,7 +9,7 @@ interface CustomNavProps {
 }
 
 const NavBar: React.FC<CustomNavProps> = ({ headerStyle }) => {
-    const {isOpen, isFixed, toggleMenu, closeMenu } = useNavbar()
+    const {isOpen, toggleMenu, closeMenu } = useNavbar()
 
     return (
         <>
