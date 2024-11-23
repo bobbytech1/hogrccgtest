@@ -1,5 +1,7 @@
 import { FaChevronRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { MinistriesData } from "../../data";
+import CustomButton from "../Button/CustomButton";
 const HomeMinistries = () => {
     return ( 
         <>
@@ -28,6 +30,32 @@ const HomeMinistries = () => {
         </div>
 
         {/* Ministries section */}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 p-6 mt-5">
+      {MinistriesData.map((ministry) => (
+        <div
+          key={ministry.id}
+          className="relative w-full rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105"
+        >
+          {/* Background Image */}
+          <img
+            src={ministry.imageUrl}
+            alt={ministry.title}
+            className="w-full md:h-[100vh] h-[80vh] object-cover"
+          />
+
+          {/* Overlay */}
+          {/* Overlay at the bottom */}
+          <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 flex items-start md:p-8 p-5">
+            <div className="text-white md:space-y-5 space-y-4">
+              <h3 className="font-headingFont md:text-[24px] text-[22px] font-semibold">{ministry.title}</h3>
+              <p className="font-paragraphFont md:text-[16px] text-[15px] font-normal">{ministry.description}</p>
+             <CustomButton txt="More Details" btnStyle="py-1" txtStyle="text-[14px]" to="/ministries" icon={<FaChevronRight/>}/>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
 
             </div>
         </>

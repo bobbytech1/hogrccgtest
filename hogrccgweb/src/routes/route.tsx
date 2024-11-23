@@ -7,6 +7,7 @@ import Events from "../pages/Events";
 import Sermons from "../pages/Sermons";
 import OnlineGiving from "../pages/OnlineGiving";
 import Ministries from "../pages/Ministries";
+import Blog from "../pages/Blog";
 import Contact from "../pages/Contact";
 
 const FolderRoute = () => {
@@ -20,6 +21,8 @@ const FolderRoute = () => {
                 <Route path="/sermons" element={<Sermons />} />
                 <Route path="/onlinegiving" element={<OnlineGiving />} />
                 <Route path="/ministries" element={<Ministries />} />
+                <Route path="/ministries" element={<Ministries />} />
+                <Route path="/blog" element={<Blog />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<NotFound/>} />
             </Routes>

@@ -13,6 +13,21 @@ export interface EventData {
     alt: string;
     caption?: string;
   };
+
+  interface MinistriesData {
+    id: number;
+    imageUrl: string;
+    title: string;
+    description: string;
+  };
+  interface BlogData {
+    id: number;
+    imageUrl: string;
+    title: string;
+    description: string;
+    date: string;
+
+  };
   
   export const Eventdata: EventData[] = [
     {
@@ -101,4 +116,49 @@ export interface EventData {
         caption: 'Hog Img9'
       },
   ]
+
+  export const MinistriesData: MinistriesData[] = [
+    {
+      id: 1,
+      imageUrl: "https://via.placeholder.com/300x200",
+      title: "Singles Ministry",
+      description: "Join us at any of our Sunday service locations around the Bay Area for engaging and faith-building message from the Bible, along with singing, fellowship, and classes for kids.",
+    },
+    {
+      id: 2,
+      imageUrl: "https://via.placeholder.com/300x200",
+      title: "Mens Ministry",
+      description: "Join us at any of our Sunday service locations around the Bay Area for engaging and faith-building message from the Bible, along with singing, fellowship, and classes for kids.",
+    },
+    {
+      id: 3,
+      imageUrl: "https://via.placeholder.com/300x200",
+      title: "Teens Ministry",
+      description: "Join us at any of our Sunday service locations around the Bay Area for engaging and faith-building message from the Bible, along with singing, fellowship, and classes for kids.",
+    },
+  ];
+
+  export const BlogData: BlogData[] = [
+    {
+      id: 1,
+      imageUrl: "https://via.placeholder.com/300x200",
+      title: "Walking with God",
+      description: "Join us at any of our Sunday service locations around the Bay Area for engaging and faith-building message from the Bible, along with singing, fellowship, and classes for kids.",
+      date: "December 1st, 2024",
+    },
+    {
+      id: 2,
+      imageUrl: "https://via.placeholder.com/300x200",
+      title: "Praying to God",
+      description: "Join us at any of our Sunday service locations around the Bay Area for engaging and faith-building message from the Bible, along with singing, fellowship, and classes for kids.",
+      date: "December 1st, 2024",
+    },
+    {
+      id: 3,
+      imageUrl: "https://via.placeholder.com/300x200",
+      title: "Worshipping God",
+      description: "Join us at any of our Sunday service locations around the Bay Area for engaging and faith-building message from the Bible, along with singing, fellowship, and classes for kids.",
+      date: "December 1st, 2024",
+    },
+  ];
   

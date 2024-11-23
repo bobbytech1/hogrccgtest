@@ -4,7 +4,7 @@ import { FaChevronRight } from "react-icons/fa6";
 const Welcome = () => {
   return (
     <>
-      <div className="flex lgx:flex-row flex-col lgx:items-center justify-center lgx:justify-between mt-14 space-y-16">
+    <div className="flex lgx:flex-row flex-col lgx:items-center justify-center lgx:justify-between mt-14 space-y-16">
         <div className="flex lgx:items-start lgx:justify-start justify-center items-center">
           <img
             src="https://www.dropbox.com/scl/fi/jqiuixvre0vmwgmunswnf/033A1041.jpg?rlkey=rkrnagrv1twdnno3qf0v2oe5c&st=p0pgww93&raw=1"

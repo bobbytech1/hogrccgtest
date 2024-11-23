@@ -6,6 +6,7 @@ import ImageCarousel from "../components/Home/ImageCarousel";
 import UpcomingEvents from "../components/Home/UpcomingEvents";
 import HomeSermons from "../components/Home/HomeSermons";
 import HomeMinistries from "../components/Home/HomeMinistries";
+import HomeBlog from "../components/Home/HomeBlog";
 
 const Home = () => {
     const {isFixed} = useNavbar()
@@ -20,6 +21,7 @@ const Home = () => {
                 <UpcomingEvents />
                 <HomeSermons />
                 <HomeMinistries />
+                <HomeBlog />
             </div>
            </div>
         </>

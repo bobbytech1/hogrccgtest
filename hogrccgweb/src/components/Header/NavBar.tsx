@@ -24,6 +24,7 @@ const NavBar: React.FC<CustomNavProps> = ({ headerStyle }) => {
                     <Link to="/sermons" className="hover:text-yellow-400 active:text-yellow-400 transition-all">Sermons</Link>
                     <Link to="/onlinegiving" className="hover:text-yellow-400 active:text-yellow-400 transition-all">Online Giving</Link>
                     <Link to="/ministries" className="hover:text-yellow-400 active:text-yellow-400 transition-all">Ministries</Link>
+                    <Link to="/blog" className="hover:text-yellow-400 active:text-yellow-400 transition-all">Blog</Link>
                     <Link to="/contact" className="hover:text-yellow-400 active:text-yellow-400 transition-all">Contact</Link>
                 </div>
                 {/* Mobile menu icon */}
@@ -76,6 +77,9 @@ const NavBar: React.FC<CustomNavProps> = ({ headerStyle }) => {
       </Link>
       <Link to="/ministries" className="hover:text-yellow-400 active:text-yellow-400 transition-all">
         Ministries
+      </Link>
+      <Link to="/blog" className="hover:text-yellow-400 active:text-yellow-400 transition-all">
+        Blog
       </Link>
       <Link to="/contact" className="hover:text-yellow-400 active:text-yellow-400 transition-all">
         Contact

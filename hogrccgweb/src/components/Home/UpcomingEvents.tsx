@@ -81,7 +81,7 @@ const UpcomingEvents = () => {
                      <div className="flex items-center space-x-1">
                      <p className="font-paragraphFont md:text-[14px] text-[10px]">{event.date}</p>
                      </div>
-                 <CustomButton txt="Read more" to="/events" btnStyle="md:py-[7px] py-[5px]" txtStyle="md:text-[13px] text-[10px] uppercase"/>
+                 <CustomButton txt="view more" to="/events" btnStyle="md:py-[7px] py-[5px]" txtStyle="md:text-[13px] text-[10px] uppercase"/>
                  </div>
              </div>
          </Card>

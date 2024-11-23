@@ -25,11 +25,17 @@ export default {
       },
       animation: {
         slideDown: 'slideDown 0.7s ease-in-out',
+        'pulse-out': 'pulse-out 1s ease-in-out infinite',
       },
       keyframes: {
         slideDown: {
           '0%': { transform: 'translateY(-100%)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'pulse-out': {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+          '100%': { transform: 'scale(1)' },
         },
       },
     },
