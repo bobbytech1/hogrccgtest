@@ -1,3 +1,8 @@
+import { FaLightbulb } from "react-icons/fa";
+import { CiHeart } from "react-icons/ci";
+import { FaRocket } from "react-icons/fa";
+
+
 // data.ts
 export interface EventData {
     id: number;
@@ -20,6 +25,7 @@ export interface EventData {
     title: string;
     description: string;
   };
+
   interface BlogData {
     id: number;
     imageUrl: string;
@@ -28,6 +34,13 @@ export interface EventData {
     date: string;
 
   };
+
+  interface AboutValues {
+    id: number;
+    imageUrl: React.ElementType | string;
+    title: string;
+    description: string;
+  }
   
   export const Eventdata: EventData[] = [
     {
@@ -161,4 +174,28 @@ export interface EventData {
       date: "December 1st, 2024",
     },
   ];
+
+  export const AboutCards: AboutValues[] = [
+    {
+      id: 1,
+      imageUrl: FaLightbulb, // React Icon
+      title: "God-focused",
+      description: "Creating a culture that places God and his Word at the center of everything.",
+    },
+   
+    {
+      id: 2,
+      imageUrl: CiHeart, // React Icon
+      title: "God-focused",
+      description: "Creating a culture that places God and his Word at the center of everything.",
+    },
+   
+    {
+      id: 1,
+      imageUrl: FaRocket, // React Icon
+      title: "God-focused",
+      description: "Creating a culture that places God and his Word at the center of everything.",
+    },
+   
+  ]
   
