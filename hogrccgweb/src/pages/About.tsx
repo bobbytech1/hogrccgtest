@@ -1,7 +1,12 @@
+import Whoweare from "../components/About/Whoweare";
+import NavBar from "../components/Header/NavBar";
 const About = () => {
     return ( 
         <>
-            <h1>Hello About</h1>
+            <NavBar />
+            <div className="bg-[#F7F7F7]">
+                <Whoweare />
+            </div>
         </>
      );
 }
