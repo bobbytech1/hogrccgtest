@@ -1,7 +1,15 @@
+import NavBar from "../components/Header/NavBar";
+import Footer from "../components/Footer/Footer";
+import MainBlog from "../components/Blog/MainBlog";
+
 const Blog = () => {
     return ( 
         <>
-            <h1>Hello welcome to Blog page</h1>
+            <NavBar />
+            <div className="bg-[#F7F7F7]">
+                <MainBlog />
+            </div>
+            <Footer />
         </>
      );
 }

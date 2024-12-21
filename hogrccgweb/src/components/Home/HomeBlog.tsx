@@ -25,7 +25,7 @@ const HomeBlog = () => {
             We believe that what makes church special is not only the Sunday sermon, but also the spiritual connections we build with God and each other.
             </p>
             <Link
-              to="/ministries"
+              to="/blog"
               className="flex items-center space-x-2 font-paragraphFont font-semibold xssm:text-[16px] text-[15px]"
             >
               View All

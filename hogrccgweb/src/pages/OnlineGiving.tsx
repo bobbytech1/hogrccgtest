@@ -1,7 +1,17 @@
+import NavBar from "../components/Header/NavBar";
+import Footer from "../components/Footer/Footer";
+import ComingSoon from "../components/OnlineGiving/ComingSoon"
+import { images } from "../constants";
+
 const OnlineGiving = () => {
+    const backgroundImageUrl = `${images.ComingSoonImg}`;
     return ( 
         <>
-            <h1>Hello this is Online Giving Page</h1>
+            <NavBar />
+            <div className="bg-[#F7F7F7]">
+                <ComingSoon  backgroundImageUrl={backgroundImageUrl}/>
+            </div>
+            <Footer/>
         </>
      );
 }

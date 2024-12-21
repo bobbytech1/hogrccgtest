@@ -41,6 +41,16 @@ export interface EventData {
     title: string;
     description: string;
   }
+
+  interface SermonsData {
+    id: number;
+    title: string;
+    date: string;
+    description: string;
+    videoUrl: string;
+    thumbnail: string;
+    tags: Array<string>;
+  }
   
   export const Eventdata: EventData[] = [
     {
@@ -197,5 +207,35 @@ export interface EventData {
       description: "Creating a culture that places God and his Word at the center of everything.",
     },
    
+  ]
+
+  export const SermonData: SermonsData[] = [
+    {
+      id: 1,
+      title: "The Power of Prayer",
+      date: "December 10, 2024",
+      description: "An inspiring sermon about the impact of consistent prayer.",
+      videoUrl: "https://www.youtube.com/embed/S55SExjm-9E?si=9L8vLauSuwtpk7D0",
+      thumbnail: "/images/sermon1.jpg",
+      tags: ["Faith", "Prayer"],
+    },
+    {
+      id: 2,
+      title: "Finding Hope in Hard Times",
+      date: "December 3, 2024",
+      description: "Learn how to stay hopeful during life's challenges.",
+      videoUrl: "https://www.youtube.com/embed/sampleVideoID2",
+      thumbnail: "/images/sermon2.jpg",
+      tags: ["Hope", "Life Challenges"],
+    },
+    {
+      id: 3,
+      title: "Walking in Faith",
+      date: "November 26, 2024",
+      description: "A transformative message on how to trust God in every situation.",
+      videoUrl: "https://www.youtube.com/embed/sampleVideoID3",
+      thumbnail: "/images/sermon3.jpg",
+      tags: ["Faith", "Trust"],
+    },
   ]
   
