@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../config/jwt';
 
+// Define a custom request interface that includes 'admin' property
 export interface AuthenticatedRequest extends Request {
-  admin?: any;
+  admin?: { id: number }; // Specify the structure of the 'admin' object
 }
 
 export const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {

@@ -24,6 +24,7 @@ db.raw('SELECT 1') // A simple query to test the connection
   // Routes
   app.use('/api/auth', authRoutes);
   app.use('/api/admin', adminRoutes);
+  
 
 // Base route
 app.get('/', (req: Request, res: Response) => {
