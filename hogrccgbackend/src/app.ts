@@ -1,8 +1,14 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import db from './db/knex';
 import authRoutes from './routes/authRoute';
 import adminRoutes from './routes/adminRoute';
+import contentRoutes from './routes/contentRoutes';
+import eventRoutes from './routes/eventRoutes';
+import blogRoutes from './routes/blogRoutes';
+import sermonRoutes from './routes/sermonRoutes';
+import ministryRoutes from './routes/ministryRoutes';
 
 // Create the Express app
 const app: Application = express();
@@ -10,6 +16,15 @@ const app: Application = express();
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
+
+// CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:5173', // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // Allow cookies to be sent across origins
+};
 
 // Test database connection when the server starts
 db.raw('SELECT 1') // A simple query to test the connection
@@ -23,7 +38,7 @@ db.raw('SELECT 1') // A simple query to test the connection
 
   // Routes
   app.use('/api/auth', authRoutes);
-  app.use('/api/admin', adminRoutes);
+  app.use('/api/admin', adminRoutes, contentRoutes, eventRoutes, blogRoutes, sermonRoutes, ministryRoutes);
   
 
 // Base route

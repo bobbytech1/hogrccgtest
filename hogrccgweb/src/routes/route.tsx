@@ -9,6 +9,8 @@ import OnlineGiving from "../pages/OnlineGiving";
 import Ministries from "../pages/Ministries";
 import Blog from "../pages/Blog";
 import Contact from "../pages/Contact";
+import AdminLogin from "../pages/admin/Login"
+import AdminDashboard from "../pages/admin/Dashboard";
 
 const FolderRoute = () => {
     return ( 
@@ -24,6 +26,8 @@ const FolderRoute = () => {
                 <Route path="/ministries" element={<Ministries />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/admin" element={<AdminLogin />} />
+                <Route path="/admindash" element={<AdminDashboard />} />
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </>
