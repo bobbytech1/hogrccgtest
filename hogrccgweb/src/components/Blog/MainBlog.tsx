@@ -91,7 +91,7 @@ const MainBlog: React.FC<MainBlogProps> = ({ BlogData = BlogDataSource }) => {
                 </Typography>
                 <div className="flex items-center justify-between pt-3">
                   <p className="text-gray-500 text-[14px]">{blog.date}</p>
-                  <CustomButton txt="Read more" to={`/blog/${blog.id}`} btnStyle="" txtStyle="" />
+                  <CustomButton txt="Read more" to={`/blog/${blog.id}`} btnStyle="md:py-[7px] py-[5px]" txtStyle="md:text-[13px] text-[10px] uppercase"/>
                 </div>
               </div>
             </Card>

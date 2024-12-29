@@ -4,6 +4,9 @@ import { FaBars, FaTimes } from 'react-icons/fa'; // React Icons for hamburger a
 import { images } from "../../constants";
 import HomeTab from '../../components/admin/Home';
 import AboutTab from '../../components/admin/About';
+import EventTab from '../../components/admin/Event';
+import SermonTab from '../../components/admin/Sermon';
+import MinistryTab from '../../components/admin/Ministry';
 
 const tabs = [
   'Home',
@@ -85,10 +88,10 @@ const AdminDashboard: React.FC = () => {
         <div className="mt-6">
           {activeTab === 'Home' && <HomeTab/>}
           {activeTab === 'About' && <AboutTab/>}
-          {activeTab === 'Events' && <div>Manage the Events section here.</div>}
-          {activeTab === 'Sermons' && <div>Manage the Sermons section here.</div>}
+          {activeTab === 'Events' && <EventTab/>}
+          {activeTab === 'Sermons' && <SermonTab/>}
           {activeTab === 'Online Giving' && <div>Manage Online Giving here.</div>}
-          {activeTab === 'Ministries' && <div>Manage the Ministries section here.</div>}
+          {activeTab === 'Ministries' && <MinistryTab/>}
           {activeTab === 'Blog' && <div>Manage the Blog section here.</div>}
           {activeTab === 'Contact' && <div>Manage the Contact section here.</div>}
         </div>

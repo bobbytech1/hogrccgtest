@@ -3,6 +3,7 @@ import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 const Footer = () => {
+  const currentYear = new Date().getFullYear()
   return (
     <>
       <div className="bg-black p-8">
@@ -67,7 +68,7 @@ const Footer = () => {
         </div>
 
         <p className="text-center text-white xxm:text-xl text-[18px] font-linkFont capitalize">
-          &copy; 2023 rccg Hog. All rights reserved.
+          &copy; {currentYear} rccg Hog. All rights reserved.
         </p>
       </div>
     </>
