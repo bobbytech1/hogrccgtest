@@ -1,12 +1,17 @@
 // src/pages/AdminDashboard.tsx
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa'; // React Icons for hamburger and close icons
+import { useNavigate } from 'react-router-dom';
 import { images } from "../../constants";
 import HomeTab from '../../components/admin/Home';
 import AboutTab from '../../components/admin/About';
 import EventTab from '../../components/admin/Event';
 import SermonTab from '../../components/admin/Sermon';
 import MinistryTab from '../../components/admin/Ministry';
+import BlogTab from '../../components/admin/Blog';
+import ContactTab from '../../components/admin/Contact';
+import {logoutUser} from '../../utils/api'
+
 
 const tabs = [
   'Home',
@@ -25,6 +30,17 @@ const AdminDashboard: React.FC = () => {
   const adminUsername = "Admin"; // Replace with dynamic username fetching logic if needed
   const currentHour = new Date().getHours();
   const greeting = currentHour < 12 ? "Good Morning" : currentHour < 18 ? "Good Afternoon" : "Good Evening";
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      // Navigate to login page after successful logout
+      navigate('/admin');
+    } catch (error) {
+      console.error('Failed to log out:', error);
+    }
+  };
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -80,7 +96,7 @@ const AdminDashboard: React.FC = () => {
               <FaBars />
             </button>
             {/* Logout Button */}
-            <button className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
+            <button className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700" onClick={handleLogout}>
               Logout
             </button>
           </div>
@@ -90,10 +106,10 @@ const AdminDashboard: React.FC = () => {
           {activeTab === 'About' && <AboutTab/>}
           {activeTab === 'Events' && <EventTab/>}
           {activeTab === 'Sermons' && <SermonTab/>}
-          {activeTab === 'Online Giving' && <div>Manage Online Giving here.</div>}
+          {activeTab === 'Online Giving' && <div>Coming soon...</div>}
           {activeTab === 'Ministries' && <MinistryTab/>}
-          {activeTab === 'Blog' && <div>Manage the Blog section here.</div>}
-          {activeTab === 'Contact' && <div>Manage the Contact section here.</div>}
+          {activeTab === 'Blog' && <BlogTab />}
+          {activeTab === 'Contact' && <ContactTab/>}
         </div>
       </main>
     </div>

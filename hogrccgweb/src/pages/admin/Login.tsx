@@ -1,8 +1,9 @@
 // src/pages/AdminLogin.tsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // For routing
+import { useNavigate } from 'react-router-dom';
 import { images } from "../../constants";
 import { Link } from "react-router-dom";
+import { apiFetch } from "../../utils/api";
 
 const AdminLogin: React.FC = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -17,30 +18,24 @@ const AdminLogin: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
+  
     try {
-      // Replace this URL with your actual API endpoint
-      const response = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      await apiFetch(
+        'http://localhost:3000/api/auth/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
         },
-        body: JSON.stringify(formData),
-      });
-
-      // Check if response is successful (status code 200-299)
-      if (!response.ok) {
-        throw new Error('Invalid email or password');
-      }
-
-      const data = await response.json();
-      
-      // Example: If the response contains a token
-      const { token } = data;
-      localStorage.setItem('authToken', token); // Store token
-
-      // Navigate to dashboard
-      navigate('/dashboard');
+        navigate // Pass navigate function here
+      );
+  
+      // Mark the user as logged in by setting loggedIn in localStorage
+      localStorage.setItem('loggedIn', 'true'); 
+  
+      navigate('/admindash'); // Redirect to the admin dashboard
     } catch (err: any) {
       setError(err.message);
     }
@@ -50,14 +45,14 @@ const AdminLogin: React.FC = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-sm p-6 bg-gray-700 rounded-lg shadow-md">
         <div className="flex justify-center items-center">
-                            <Link to="/"><img src={images.Logo} alt="Logo" className="h-[40px]" /></Link>
-                        </div>
+          <Link to="/"><img src={images.Logo} alt="Logo" className="h-[40px]" /></Link>
+        </div>
         <h2 className="text-2xl font-bold text-center text-white mb-6 font-headingFont">Admin Login</h2>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-300 font-paragraphFont">
-              Email
+              Username
             </label>
             <input
               type="username"
