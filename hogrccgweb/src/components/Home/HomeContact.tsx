@@ -1,28 +1,33 @@
 import { FaLocationDot } from "react-icons/fa6";
+import { usePageContent } from "../../hooks/usePageContent";
 
 const HomeContact = () => {
+  const { data, isLoading } = usePageContent("home-page");
+  if (isLoading) return <div>Loading...</div>;
+
+  const { section8 } = data?.content || {};
   return (
     <>
       <div className="my-10 md:px-10 px-6 bg-white py-10">
         <div className="flex flex-col justify-center items-center">
           <h2 className="font-headingFont lgx:w-[80%] w-[100%] text-[#121926] font-[600] text-start lgx:text-center text-2xl xssm:text-3xl sm:text-4xl lgx:text-3xl lg:text-4xl xl:text-5xl">
-            We would like to hear from you
+            {section8?.heading}
           </h2>
           <p className="font-paragraphFont lgx:w-[80%] w-[100%] text-[#121926] font-[500] text-start lgx:text-center text-[17px] xssm:text-[18px] lgx:text-[16px] lg:text-[18px] py-2">
-            You can reach out to us with the form below Lorem ipsum dolor, sit
-            amet consectetur adipisicing elit. Quidem sunt fugit consectetur
-            eveniet, eaque vero hic ducimus nihil, dolorum culpa cumque
-            voluptates fuga quia, dolore recusandae quod quisquam sint.
-            Dignissimos velit autem commodi tempore deserunt rem facilis?
-            Maiores, distinctio suscipit.
+            {section8?.paragraph}
           </p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <img
-            src="https://via.placeholder.com/300x200"
-            alt=""
-            className="md:h-[80vh] h-[60vh] my-8"
-          />
+          <iframe
+            width="640px"
+            height="480px"
+            src={section8?.formLink}
+            frameBorder="0"
+            className="border-none max-w-[100%] max-h-[100vh] my-10"
+            allowFullScreen
+          >
+            {" "}
+          </iframe>
           <a
             href="https://maps.app.goo.gl/3s8wUfJ4FEBvtizR6"
             target="_blank"

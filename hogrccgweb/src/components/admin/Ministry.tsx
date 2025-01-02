@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { apiFetch } from '../../utils/api'; // Assuming you have the same utility function for API requests
 
 const MinistryTab = () => {
   const [ministryData, setMinistryData] = useState({
@@ -8,6 +9,7 @@ const MinistryTab = () => {
     image: '',
     form_link: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -19,9 +21,10 @@ const MinistryTab = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await fetch('/api/ministries', {
+      const response = await apiFetch('http://localhost:3000/api/admin/ministry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,9 +32,10 @@ const MinistryTab = () => {
         body: JSON.stringify(ministryData),
       });
 
-      const result = await response.json();
-      if (response.ok) {
-        alert(result.message || 'Ministry successfully saved!');
+      // If the response is an object, skip checking for headers
+      if (response && response.message) {
+        alert(response.message || 'Ministry saved successfully!');
+        window.location.reload();
         setMinistryData({
           id: '',
           title: '',
@@ -40,11 +44,13 @@ const MinistryTab = () => {
           form_link: '',
         });
       } else {
-        alert(result.message || 'Failed to save ministry.');
+        alert('An unexpected error occurred.');
       }
     } catch (error) {
-      alert('An error occurred while saving the ministry.');
-      console.error(error);
+      console.error('Network error. Please try again.', error);
+      alert('Network error. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,7 +58,6 @@ const MinistryTab = () => {
     <div className="bg-white p-6 shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Create or Update Ministry</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Ministry ID (optional, for updates) */}
         <input
           type="text"
           name="id"
@@ -61,8 +66,6 @@ const MinistryTab = () => {
           placeholder="Ministry ID (leave empty for new ministry)"
           className="w-full p-2 border rounded-md"
         />
-
-        {/* Title */}
         <input
           type="text"
           name="title"
@@ -72,8 +75,6 @@ const MinistryTab = () => {
           className="w-full p-2 border rounded-md"
           required
         />
-
-        {/* Description */}
         <textarea
           name="description"
           value={ministryData.description}
@@ -83,8 +84,6 @@ const MinistryTab = () => {
           rows={6}
           required
         ></textarea>
-
-        {/* Image */}
         <input
           type="url"
           name="image"
@@ -93,8 +92,6 @@ const MinistryTab = () => {
           placeholder="Image URL"
           className="w-full p-2 border rounded-md"
         />
-
-        {/* Form Link */}
         <input
           type="url"
           name="form_link"
@@ -103,13 +100,14 @@ const MinistryTab = () => {
           placeholder="Form Link"
           className="w-full p-2 border rounded-md"
         />
-
-        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-700 text-white py-2 rounded-md hover:bg-blue-800"
+          className={`w-full py-2 text-white rounded-md ${
+            loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-700 hover:bg-blue-800'
+          }`}
+          disabled={loading}
         >
-          Save Ministry
+          {loading ? 'Saving...' : 'Save Ministry'}
         </button>
       </form>
     </div>

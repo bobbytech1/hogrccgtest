@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { apiFetch } from '../../utils/api';
 
 const SermonTab = () => {
   const [sermonData, setSermonData] = useState({
@@ -11,6 +12,7 @@ const SermonTab = () => {
     speaker: '',
     date: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -22,9 +24,10 @@ const SermonTab = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await fetch('/api/sermons', {
+      const response = await apiFetch('http://localhost:3000/api/admin/sermon', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,9 +35,10 @@ const SermonTab = () => {
         body: JSON.stringify(sermonData),
       });
 
-      const result = await response.json();
-      if (response.ok) {
-        alert(result.message || 'Sermon successfully saved!');
+      // If the response is an object, skip checking for headers
+      if (response && response.message) {
+        alert(response.message || 'Sermon saved successfully!');
+        window.location.reload();
         setSermonData({
           id: '',
           title: '',
@@ -46,11 +50,13 @@ const SermonTab = () => {
           date: '',
         });
       } else {
-        alert(result.message || 'Failed to save sermon.');
+        alert('An unexpected error occurred.');
       }
     } catch (error) {
-      alert('An error occurred while saving the sermon.');
-      console.error(error);
+      console.error('Network error. Please try again.', error);
+      alert('Network error. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -58,7 +64,6 @@ const SermonTab = () => {
     <div className="bg-white p-6 shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Create or Update Sermon</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Sermon ID (optional, for updates) */}
         <input
           type="text"
           name="id"
@@ -67,8 +72,6 @@ const SermonTab = () => {
           placeholder="Sermon ID (leave empty for new sermon)"
           className="w-full p-2 border rounded-md"
         />
-
-        {/* Title */}
         <input
           type="text"
           name="title"
@@ -78,8 +81,6 @@ const SermonTab = () => {
           className="w-full p-2 border rounded-md"
           required
         />
-
-        {/* Category */}
         <input
           type="text"
           name="category"
@@ -89,8 +90,6 @@ const SermonTab = () => {
           className="w-full p-2 border rounded-md"
           required
         />
-
-        {/* Content */}
         <textarea
           name="content"
           value={sermonData.content}
@@ -100,8 +99,6 @@ const SermonTab = () => {
           rows={6}
           required
         ></textarea>
-
-        {/* Image */}
         <input
           type="url"
           name="image"
@@ -110,8 +107,6 @@ const SermonTab = () => {
           placeholder="Image URL"
           className="w-full p-2 border rounded-md"
         />
-
-        {/* Video */}
         <input
           type="url"
           name="video"
@@ -120,8 +115,6 @@ const SermonTab = () => {
           placeholder="Video URL"
           className="w-full p-2 border rounded-md"
         />
-
-        {/* Speaker */}
         <input
           type="text"
           name="speaker"
@@ -131,8 +124,6 @@ const SermonTab = () => {
           className="w-full p-2 border rounded-md"
           required
         />
-
-        {/* Date */}
         <input
           type="date"
           name="date"
@@ -141,13 +132,14 @@ const SermonTab = () => {
           className="w-full p-2 border rounded-md"
           required
         />
-
-        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-700 text-white py-2 rounded-md hover:bg-blue-800"
+          className={`w-full py-2 text-white rounded-md ${
+            loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-700 hover:bg-blue-800'
+          }`}
+          disabled={loading}
         >
-          Save Sermon
+          {loading ? 'Saving...' : 'Save Sermon'}
         </button>
       </form>
     </div>

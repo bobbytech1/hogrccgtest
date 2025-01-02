@@ -3,11 +3,16 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import CustomButton from "../Button/CustomButton";
+import { usePageContent } from '../../hooks/usePageContent';
 import { Box } from "@mui/joy";
 import { Link } from "react-router-dom";
 import { BlogData } from "../../data";
 
 const HomeBlog = () => {
+  const { data, isLoading } = usePageContent('home-page');
+  if (isLoading) return <div>Loading...</div>;
+
+  const { section7 } = data?.content || {}; 
     return ( 
         <>
             <div className="mt-6 md:px-10 px-6">
@@ -17,12 +22,12 @@ const HomeBlog = () => {
               BLOG
             </h3>
             <h2 className="font-paragraphFont xssm:text-[32px] text-[28px] font-bold">
-            We are a church dedicated to making you read more.
+            {section7?.heading}
             </h2>
           </div>
           <div className="space-y-2 lgx:w-[50%] xssm:w-[90%] w-[100%]">
             <p className="font-paragraphFont xssm:text-[24px] text-[20px] font-semibold">
-            We believe that what makes church special is not only the Sunday sermon, but also the spiritual connections we build with God and each other.
+           {section7?.paragraph}
             </p>
             <Link
               to="/blog"

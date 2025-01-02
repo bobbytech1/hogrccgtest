@@ -4,10 +4,15 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import CustomButton from "../Button/CustomButton";
+import { usePageContent } from '../../hooks/usePageContent';
 import { Eventdata } from "../../data";
 import { Box } from "@mui/joy";
 
 const UpcomingEvents = () => {
+    const { data, isLoading } = usePageContent('home-page');
+    if (isLoading) return <div>Loading...</div>;
+  
+    const { eventSection } = data?.content || {}; // Get the carousel data from the API respons
     return (
         <>
             <div className="my-14 md:px-10 px-6 pb-12 bg-[#FFFFFF] pt-6">
@@ -15,10 +20,10 @@ const UpcomingEvents = () => {
                 <div className="flex lgx:flex-row flex-col lgx:items-center items-start space-y-6 justify-between lgx:space-x-11">
                     <div className="lgx:w-[50%] xssm:w-[90%] w-[100%] space-y-2">
                         <h3 className="font-headingFont xssm:text-[18px] text-[16px] font-medium">EVENTS</h3>
-                        <h2 className="font-paragraphFont xssm:text-[32px] text-[28px] font-bold">We are a church dedicated to walking with God.</h2>
+                        <h2 className="font-paragraphFont xssm:text-[32px] text-[28px] font-bold">{eventSection?.heading}</h2>
                     </div>
                     <div className="space-y-2 lgx:w-[50%] xssm:w-[90%] w-[100%]">
-                        <p className="font-paragraphFont xssm:text-[24px] text-[20px] font-semibold">We believe that what makes church special is not only the Sunday sermon, but also the spiritual connections we build with God and each other.</p>
+                        <p className="font-paragraphFont xssm:text-[24px] text-[20px] font-semibold">{eventSection?.paragraph}</p>
                         <Link to="/events" className="flex items-center space-x-2 font-paragraphFont font-semibold xssm:text-[16px] text-[15px]">
                             View All
                             <FaChevronRight size={14} />
@@ -28,7 +33,7 @@ const UpcomingEvents = () => {
 
                 {/* Upcoming events */}
                 <div className="flex flex-col justify-center items-center">
-                    <img src="https://www.dropbox.com/scl/fi/exlokypfq4ugef2k4tsbw/IMG-20241123-WA0000.jpg?rlkey=9mm5ec1mmpg5qsjutvfpnzeiw&st=udxbtncc&raw=1" alt="Upcoming Events" className="py-20 lgx:h-[100vh] h-auto w-auto" />
+                    <img src={eventSection?.image}alt="Upcoming Events" className="py-20 lgx:h-[100vh] h-auto w-auto" />
                     {/* Upcoming events cards */}
                     <Box sx={{
         width: '100%',

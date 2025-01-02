@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Section from "./Sections";
+import usePostPageContent from "../../hooks/usePostPageContent";
 
 type FormData = {
   hero: { heading: string; paragraph: string; bgVideo: string };
@@ -23,6 +24,7 @@ const HomeTab: React.FC = () => {
     section7: { heading: "", paragraph: "" },
     section8: { heading: "", paragraph: "", formLink: "" },
   });
+  const { postPageContent, loading, error, success } = usePostPageContent();
 
   const handleChange = (section: keyof FormData, key: string, value: string, index?: number) => {
     if (section === "carousel" && index !== undefined) {
@@ -37,9 +39,22 @@ const HomeTab: React.FC = () => {
     }
   };
 
-  const handleSubmit = () => {
-    console.log("Form Data:", formData);
-    alert("Home data updated successfully!");
+  const handleSubmit = async () => {
+    try {
+      const slug = "home-page";
+      const content = { ...formData };
+  
+      await postPageContent(slug, content);
+  
+      if (success) {
+        alert("Home data updated successfully!");
+      } else if (error) {
+        alert(error);
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      alert("An unexpected error occurred.");
+    }
   };
 
   return (
@@ -117,7 +132,7 @@ const HomeTab: React.FC = () => {
         onClick={handleSubmit}
         className="px-6 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800"
       >
-        Save Changes
+       {loading ? "Saving..." : "Save Changes"}
       </button>
     </div>
   );

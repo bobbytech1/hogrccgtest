@@ -1,8 +1,13 @@
 import { FaChevronRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { MinistriesData } from "../../data";
+import { usePageContent } from '../../hooks/usePageContent';
 import CustomButton from "../Button/CustomButton";
 const HomeMinistries = () => {
+  const { data, isLoading } = usePageContent('home-page');
+  if (isLoading) return <div>Loading...</div>;
+
+  const { section6 } = data?.content || {}; 
     return ( 
         <>
             <div className="mt-6 md:px-10 px-6 pb-12 bg-[#FFFFFF] pt-6">
@@ -12,12 +17,12 @@ const HomeMinistries = () => {
               MINISTRIES
             </h3>
             <h2 className="font-paragraphFont xssm:text-[32px] text-[28px] font-bold">
-            We are a church dedicated to walking with God.
+            {section6?.heading}
             </h2>
           </div>
           <div className="space-y-2 lgx:w-[50%] xssm:w-[90%] w-[100%]">
             <p className="font-paragraphFont xssm:text-[24px] text-[20px] font-semibold">
-            We believe that what makes church special is not only the Sunday sermon, but also the spiritual connections we build with God and each other.
+            {section6?.paragraph}
             </p>
             <Link
               to="/ministries"

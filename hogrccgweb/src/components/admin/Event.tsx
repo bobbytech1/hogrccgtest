@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { apiFetch } from '../../utils/api'
 
 const EventTab = () => {
   const [eventData, setEventData] = useState({
@@ -10,7 +11,6 @@ const EventTab = () => {
     form_link: '',
     date: '',
   });
-  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: any) => {
@@ -21,21 +21,20 @@ const EventTab = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
-
+  
     try {
-      const response = await fetch('/api/events', {
+      const response = await apiFetch('http://localhost:3000/api/admin/events/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(eventData),
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setMessage(result.message);
+  
+      // If the response is an object, skip checking for headers
+      if (response && response.message) {
+        alert(response.message || 'Event saved successfully!');
+        window.location.reload();
         setEventData({
           title: '',
           description: '',
@@ -46,27 +45,23 @@ const EventTab = () => {
           date: '',
         });
       } else {
-        setMessage(result.message || 'An error occurred while saving the event.');
+        alert('An unexpected error occurred.');
       }
+  
     } catch (error) {
-      setMessage('Network error. Please try again.');
+      console.error('Network error. Please try again.', error);
+      alert('Network error. Please try again.');
     } finally {
       setLoading(false);
     }
   };
+  
+  
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-gray-700 mb-4">Create or Update Event</h2>
-      {message && (
-        <div
-          className={`mb-4 p-3 rounded ${
-            message.includes('success') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-          }`}
-        >
-          {message}
-        </div>
-      )}
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"

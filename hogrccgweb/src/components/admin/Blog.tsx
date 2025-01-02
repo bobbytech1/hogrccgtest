@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { apiFetch } from '../../utils/api';
 
 const BlogTab = () => {
   const [blogData, setBlogData] = useState({
@@ -9,6 +10,7 @@ const BlogTab = () => {
     author: '',
     published_at: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -20,9 +22,10 @@ const BlogTab = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await fetch('/api/blogs', {
+      const response = await apiFetch('http://localhost:3000/api/admin/blog', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,9 +33,9 @@ const BlogTab = () => {
         body: JSON.stringify(blogData),
       });
 
-      const result = await response.json();
-      if (response.ok) {
-        alert(result.message || 'Blog successfully saved!');
+      if (response && response.message) {
+        alert(response.message || 'Blog successfully saved!');
+        window.location.reload();
         setBlogData({
           id: '',
           title: '',
@@ -42,11 +45,13 @@ const BlogTab = () => {
           published_at: '',
         });
       } else {
-        alert(result.message || 'Failed to save blog.');
+        alert('An unexpected error occurred.');
       }
     } catch (error) {
-      alert('An error occurred while saving the blog.');
-      console.error(error);
+      console.error('Network error. Please try again.', error);
+      alert('Network error. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,7 +59,6 @@ const BlogTab = () => {
     <div className="bg-white p-6 shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Create or Update Blog</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Blog ID (optional, for updates) */}
         <input
           type="text"
           name="id"
@@ -63,8 +67,6 @@ const BlogTab = () => {
           placeholder="Blog ID (leave empty for new blog)"
           className="w-full p-2 border rounded-md"
         />
-
-        {/* Title */}
         <input
           type="text"
           name="title"
@@ -74,8 +76,6 @@ const BlogTab = () => {
           className="w-full p-2 border rounded-md"
           required
         />
-
-        {/* Content */}
         <textarea
           name="content"
           value={blogData.content}
@@ -85,8 +85,6 @@ const BlogTab = () => {
           rows={8}
           required
         ></textarea>
-
-        {/* Image URL */}
         <input
           type="url"
           name="image"
@@ -95,8 +93,6 @@ const BlogTab = () => {
           placeholder="Image URL"
           className="w-full p-2 border rounded-md"
         />
-
-        {/* Author */}
         <input
           type="text"
           name="author"
@@ -106,8 +102,6 @@ const BlogTab = () => {
           className="w-full p-2 border rounded-md"
           required
         />
-
-        {/* Published Date */}
         <input
           type="datetime-local"
           name="published_at"
@@ -115,13 +109,14 @@ const BlogTab = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded-md"
         />
-
-        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-700 text-white py-2 rounded-md hover:bg-blue-800"
+          className={`w-full py-2 text-white rounded-md ${
+            loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-700 hover:bg-blue-800'
+          }`}
+          disabled={loading}
         >
-          Save Blog
+          {loading ? 'Saving...' : 'Save Blog'}
         </button>
       </form>
     </div>

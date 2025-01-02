@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import usePostPageContent from "../../hooks/usePostPageContent";
 import Section from "./Sections";
 
 type FormData = {
@@ -16,6 +17,8 @@ const AboutTab: React.FC = () => {
     missionSection: { heading: "", paragraph: "", image: "" }
   });
 
+  const { postPageContent, loading, error, success } = usePostPageContent();
+
   const handleChange = (section: keyof FormData, key: string, value: string, index?: number) => {
     if (section === "masony" && index !== undefined) {
       const updatedMasony = [...formData.masony];
@@ -29,9 +32,22 @@ const AboutTab: React.FC = () => {
     }
   };
 
-  const handleSubmit = () => {
-    console.log("Form Data:", formData);
-    alert("About data updated successfully!");
+  const handleSubmit = async () => {
+    try {
+        const slug = "about-page";
+        const content = { ...formData };
+    
+        await postPageContent(slug, content);
+    
+        if (success) {
+          alert("About page data updated successfully!");
+        } else if (error) {
+          console.error(error);
+        }
+      } catch (err) {
+        console.error("Unexpected error:", err);
+        alert("An unexpected error occurred.");
+      }
   };
 
   return (
@@ -83,7 +99,7 @@ const AboutTab: React.FC = () => {
         onClick={handleSubmit}
         className="px-6 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800"
       >
-        Save Changes
+        {loading ? "Saving..." : "Save Changes"}
       </button>
     </div>
   );
