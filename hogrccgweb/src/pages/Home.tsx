@@ -15,7 +15,7 @@ const Home = () => {
     const {isFixed} = useNavbar()
     const { isLoading, isError } = usePageContent('home-page');
     if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div className="flex justify-center items-center md:text-30px text-20px font-bold text-center">Network Error Could not Load Resources</div>;
+    if (isError) return <div className="flex justify-center items-center md:text-[30px] text-[20px] font-bold text-center">Network Error Could not Load Resources</div>;
     return ( 
         <>
            <div>

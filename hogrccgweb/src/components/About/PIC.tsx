@@ -1,4 +1,10 @@
+import { usePageContentAbout } from '../../hooks/usePageContentAbout';
+
 const PIC = () => {
+  const { data, isLoading } = usePageContentAbout('about-page');
+  
+  if (isLoading) return <div>Loading...</div>;
+  const {picSection} = data?.content || {};
   return (
     <>
       <div className="sm:px-10 px-5 py-8 mt-10 bg-white">
@@ -6,9 +12,9 @@ const PIC = () => {
           {/* Image Section */}
           <div className="relative w-full md:w-1/2">
             <img
-              src="https://via.placeholder.com/300x200"
+              src={picSection?.image}
               alt="PIC"
-              className="w-full h-80 object-cover"
+              className="w-full h-[25rem] object-cover"
             />
             {/* Overlay Text */}
             <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 text-white py-2 px-4">
@@ -19,14 +25,11 @@ const PIC = () => {
           {/* Content Section */}
           <div className="w-full md:w-1/2 p-6">
             <h2 className="text-2xl font-bold text-hogblack mb-2 font-headingFont">
-              Engr Olayinka
+              {picSection?.heading}
             </h2>
-            <h3 className="text-[14px] text-hogblack mb-4 font-paragraphFont">PICA HOPE OF GLORY</h3>
+            <h3 className="text-[14px] text-hogblack uppercase mb-4 font-paragraphFont">{picSection?.paragraph}</h3>
             <p className="text-hogblack font-paragraphFont">
-              "Celebrate the joy of Christmas by giving back to the community. A
-              special gathering for our young believers to learn and discuss
-              God’s word together. Join us for a heartfelt worship service as we
-              come together to praise and grow in faith.
+             {picSection?.paragraph2}
             </p>
           </div>
         </div>

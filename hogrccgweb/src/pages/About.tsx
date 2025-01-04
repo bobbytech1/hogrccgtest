@@ -1,3 +1,4 @@
+import { usePageContentAbout } from '../hooks/usePageContentAbout';
 import Whoweare from "../components/About/Whoweare";
 import MissionandVision from "../components/About/Mission&Vision";
 import PIC from "../components/About/PIC";
@@ -7,6 +8,9 @@ import WeeklyActivities from "../components/About/WeeklyActivities";
 import NavBar from "../components/Header/NavBar";
 import Footer from "../components/Footer/Footer";
 const About = () => {
+       const { isLoading, isError } = usePageContentAbout('about-page');
+        if (isLoading) return <div>Loading...</div>;
+        if (isError) return <div className="flex justify-center h-screen items-center md:text-[30px] text-[20px] font-bold text-center">Network Error Could not Load Resources</div>;
     return ( 
         <>
             <NavBar />

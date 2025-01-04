@@ -6,57 +6,24 @@ import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
 import CustomButton from "../Button/CustomButton";
 import { Box } from "@mui/joy";
+import { useEvents, formatDate } from "../../hooks/useEvents"; // Import the hook
 
 const EventsCal = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | null | [Date, Date]>(
-    null
-  );
+  const [selectedDate, setSelectedDate] = useState<Date | null | [Date, Date]>(null);
+  const { data: events = [] } = useEvents(); // Fetch events using the hook
 
-  const events = [
-    {
-      id: 1,
-      title: "Sunday Worship Service",
-      date: "2024-12-24", // Format: YYYY-MM-DD
-      time: "10:00 AM - 12:00 PM",
-      location: "Main Church Auditorium",
-      description:
-        "Join us for a heartfelt worship service as we come together to praise and grow in faith.",
-      image: "/images/sunday-worship.jpg", // Replace with your image path
-    },
-    {
-      id: 2,
-      title: "Youth Bible Study",
-      date: "2024-12-29",
-      time: "6:00 PM - 8:00 PM",
-      location: "Youth Hall",
-      description:
-        "A special gathering for our young believers to learn and discuss God’s word together.",
-      image: "/images/youth-bible-study.jpg", // Replace with your image path
-    },
-    {
-      id: 3,
-      title: "Christmas Outreach",
-      date: "2024-12-25",
-      time: "3:00 PM - 6:00 PM",
-      location: "Community Center",
-      description:
-        "Celebrate the joy of Christmas by giving back to the community.",
-      image: "/images/christmas-outreach.jpg",
-    },
-  ];
+
+
+  // Get the formatted selectedDate (if available)
+  const selectedDateString = selectedDate instanceof Date
+  ? formatDate(selectedDate.toLocaleDateString('en-CA')) // Convert Date to 'YYYY-MM-DD' format and pass to formatDate
+  : null;
 
   const filteredEvents = events.filter((event) => {
-    if (!selectedDate) return true; // Show all events if no date is selected
+    if (!selectedDateString) return true; // Show all events if no date is selected
 
-    const eventDate = new Date(event.date).toDateString();
-
-    if (selectedDate instanceof Date) {
-      return eventDate === selectedDate.toDateString();
-    } else if (Array.isArray(selectedDate)) {
-      return eventDate === selectedDate[0].toDateString();
-    }
-
-    return false;
+    // Compare the formatted event.date with the selectedDateString
+    return event.date === selectedDateString;
   });
 
   return (
