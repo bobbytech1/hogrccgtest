@@ -15,7 +15,6 @@ const app: Application = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
 app.use(cookieParser());
 
 // CORS configuration
@@ -25,6 +24,8 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // Allow cookies to be sent across origins
 };
+app.use(cors(corsOptions));
+
 
 // Test database connection when the server starts
 db.raw('SELECT 1') // A simple query to test the connection
@@ -40,6 +41,7 @@ db.raw('SELECT 1') // A simple query to test the connection
   app.use('/api/auth', authRoutes);
   app.use('/api/admin', adminRoutes, contentRoutes, eventRoutes, blogRoutes, sermonRoutes, ministryRoutes);
   
+ 
 
 // Base route
 app.get('/', (req: Request, res: Response) => {

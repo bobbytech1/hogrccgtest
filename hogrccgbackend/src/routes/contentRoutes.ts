@@ -1,6 +1,5 @@
 import express, { Router } from 'express';
 import { ensureAdmin, updatePageContent, getPageContent, postPageContent } from '../controllers/contentController';
-import {authMiddleware} from '../middlewares/authMiddleware';
 
 const router: Router = express.Router();
 
