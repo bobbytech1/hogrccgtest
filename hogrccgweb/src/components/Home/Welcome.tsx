@@ -9,12 +9,12 @@ const Welcome = () => {
   const {welcome} = data?.content || {};
   return (
     <>
-    <div className="bg-[#ffffff] flex lgx:flex-row flex-col lgx:items-center justify-center lgx:justify-between mt-14 space-y-16 md:px-10 px-6 pt-6 pb-10">
+    <div className="bg-[#ffffff] flex lgx:flex-row flex-col lgx:items-center justify-center lgx:justify-between mt-14 space-y-16 lgx:space-x-28 md:px-10 px-6 pt-6 pb-10">
         <div className="flex lgx:items-start lgx:justify-start justify-center items-center">
           <img
             src={welcome?.image}
             alt="Welcome Image"
-            className="xl:h-[80vh] lg:h-[70vh] lgx:h-[60vh] md:h-[80vh] xssm:h-[70vh] h-[60vh] w-auto rounded-tl-[350px] rounded-bl-[350px] rounded-br-[350px]"
+            className="xl:h-[70vh] lg:h-[50vh] lgx:h-[40vh] md:h-[70vh] xssm:h-[60vh] h-[35vh] w-auto rounded-tl-[350px] rounded-bl-[350px] rounded-br-[350px]"
           />
         </div>
         <div className="lgx:w-[40%] w-[100%]">

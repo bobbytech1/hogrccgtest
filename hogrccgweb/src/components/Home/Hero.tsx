@@ -23,10 +23,10 @@ const Hero = () => {
 
 {/* Content Overlay */}
 <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-8">
-  <h1 className="xssm:text-5xl xxm:text-5xl text-4xl md:text-7xl lg:text-8xl font-bold mb-4 capitalize font-headingFont xl:w-[80%] xssm:w-[90%] w-[100%]">
+  <h1 className="xssm:text-5xl xxm:text-5xl text-4xl md:text-7xl lg:text-8xl font-bold mb-4 capitalize font-headingFont xl:w-[60%] xssm:w-[80%] w-[100%]">
    {hero?.heading}
   </h1>
-  <p className="xxm:text-[20px] text-[18px] xssm:text-2xl md:text-3xl md:w-[80%] w-[90%] font-paragraphFont mb-4">
+  <p className="xxm:text-[20px] text-[18px] xssm:text-2xl md:text-3xl md:w-[60%] w-[90%] font-paragraphFont mb-4">
   {hero?.paragraph}
   </p>
   <a href="https://maps.app.goo.gl/3s8wUfJ4FEBvtizR6" target="_blank" rel="noopener noreferrer" className="font-linkFont flex items-center underline">

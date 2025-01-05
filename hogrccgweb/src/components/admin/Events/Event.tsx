@@ -23,7 +23,7 @@ const EventTab = () => {
     setLoading(true);
   
     try {
-      const response = await apiFetch('http://localhost:3000/api/admin/events/add', {
+      const response = await apiFetch('https://hogrccgtest.onrender.com/api/admin/events/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -27,7 +27,7 @@ const SermonTab = () => {
     setLoading(true);
 
     try {
-      const response = await apiFetch('http://localhost:3000/api/admin/sermon', {
+      const response = await apiFetch('https://hogrccgtest.onrender.com/api/admin/sermon', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

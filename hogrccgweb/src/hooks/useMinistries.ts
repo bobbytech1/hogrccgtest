@@ -12,7 +12,7 @@ interface Ministry {
 }
 
 const fetchMinistries = async (): Promise<Ministry[]> => {
-    const response = await fetch('http://localhost:3000/api/admin/ministries');
+    const response = await fetch('https://hogrccgtest.onrender.com/api/admin/ministries');
     if (!response.ok) throw new Error('Failed to fetch Ministries');
     const data = await response.json();
     return data.ministries; // Access the correct key

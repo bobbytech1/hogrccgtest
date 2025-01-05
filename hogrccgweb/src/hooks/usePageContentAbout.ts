@@ -29,7 +29,7 @@ interface Hero {
 
 // Function to fetch page content
 const fetchPageContent = async (slug: string): Promise<PageContent> => {
-    const response = await fetch(`http://localhost:3000/api/admin/pages/${slug}`);
+    const response = await fetch(`https://hogrccgtest.onrender.com/api/admin/pages/${slug}`);
     if (!response.ok) throw new Error('Failed to fetch content');
     return response.json();
   };

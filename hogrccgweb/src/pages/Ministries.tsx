@@ -1,16 +1,18 @@
 import NavBar from "../components/Header/NavBar";
 import { FaChevronRight } from "react-icons/fa";
 import { useMinistries } from "../hooks/useMinistries";
+import { usePageContent } from '../hooks/usePageContent';
 import CustomButton from "../components/Button/CustomButton";
 import Footer from "../components/Footer/Footer";
 
 const Ministries = () => {
   const { data: ministries, isLoading, error } = useMinistries();
-
+  const { data } = usePageContent('home-page');
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+  const { section6 } = data?.content || {}; 
   if (error) {
     return (
       <div className="flex justify-center items-center md:text-[30px] text-[20px] font-bold text-center">
@@ -31,12 +33,12 @@ const Ministries = () => {
                 MINISTRIES
               </h3>
               <h2 className="font-paragraphFont sm:text-[32px] text-[28px] font-bold">
-                We are a church dedicated to walking with God.
+              {section6?.heading}
               </h2>
             </div>
             <div className="space-y-2 lg:w-[50%] sm:w-[90%] w-full">
               <p className="font-paragraphFont sm:text-[24px] text-[20px] font-semibold">
-                We believe that what makes church special is not only the Sunday sermon, but also the spiritual connections we build with God and each other.
+              {section6?.paragraph}
               </p>
             </div>
           </div>

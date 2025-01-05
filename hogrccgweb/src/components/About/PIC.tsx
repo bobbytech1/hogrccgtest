@@ -14,7 +14,7 @@ const PIC = () => {
             <img
               src={picSection?.image}
               alt="PIC"
-              className="w-full h-[25rem] object-cover"
+              className="w-full h-[40rem] object-cover"
             />
             {/* Overlay Text */}
             <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 text-white py-2 px-4">

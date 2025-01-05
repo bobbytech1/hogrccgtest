@@ -12,7 +12,7 @@ const usePostPageContent = () => {
     setSuccess(null);
 
     try {
-      const response = await apiFetch("http://localhost:3000/api/admin/pages/post", {
+      const response = await apiFetch("https://hogrccgtest.onrender.com/api/admin/pages/post", {
         method: "POST",
         credentials: "include", // Send cookies with the request
         headers: {

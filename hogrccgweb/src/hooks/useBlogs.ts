@@ -14,7 +14,7 @@ interface Blog {
 
 // Fetch function to get Blog data
 const fetchBlogs = async (): Promise<Blog[]> => {
-    const response = await fetch('http://localhost:3000/api/admin/blog');
+    const response = await fetch('https://hogrccgtest.onrender.com/api/admin/blog');
     if (!response.ok) throw new Error('Failed to fetch blogs');
     const data = await response.json();
     return data.blogs; // Return the array of blogs

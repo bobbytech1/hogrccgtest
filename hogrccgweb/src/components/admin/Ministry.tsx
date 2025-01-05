@@ -24,7 +24,7 @@ const MinistryTab = () => {
     setLoading(true);
 
     try {
-      const response = await apiFetch('http://localhost:3000/api/admin/ministry', {
+      const response = await apiFetch('https://hogrccgtest.onrender.com/api/admin/ministry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

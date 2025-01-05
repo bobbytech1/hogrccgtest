@@ -16,7 +16,7 @@ interface Event {
 
 // Fetch function to get events data
 const fetchEvents = async (): Promise<Event[]> => {
-  const response = await fetch('http://localhost:3000/api/admin/events');
+  const response = await fetch('https://hogrccgtest.onrender.com/api/admin/events');
   if (!response.ok) throw new Error('Failed to fetch events');
   return response.json();
 };
