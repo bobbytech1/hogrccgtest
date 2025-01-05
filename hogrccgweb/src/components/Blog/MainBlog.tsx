@@ -1,26 +1,43 @@
 import React, { useState } from "react";
 import { Box, Card, Typography, AspectRatio } from "@mui/joy";
 import CustomButton from "../Button/CustomButton";
-import { BlogData as BlogDataSource } from "../../data"; // Renamed imported BlogData
+import { useBlogs } from "../../hooks/useBlogs"; // Import the useBlogs hook
 
 interface Blog {
-  id: string;
+  id: number;
   title: string;
   description: string;
   imageUrl: string;
   date: string;
 }
 
-interface MainBlogProps {
-  BlogData?: Blog[]; // Optional if you want to allow overriding the default data
-}
-
-const MainBlog: React.FC<MainBlogProps> = ({ BlogData = BlogDataSource }) => {
+const MainBlog: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [visibleCount, setVisibleCount] = useState<number>(8);
 
-  // Filtered blog posts based on search term
-  const filteredBlogs = BlogData.filter(
+  const { data: blogs, isLoading, isError } = useBlogs(); // Use the hook
+
+  // Handle loading state
+  if (isLoading) {
+    return <div className="text-center mt-8">Loading blogs...</div>;
+  }
+
+  // Handle error state
+  if (isError) {
+    return <div className="text-center mt-8 text-red-500">Failed to load blogs. Please try again later.</div>;
+  }
+
+  // Transform the fetched blogs to match the component's expected format
+  const transformedBlogs: Blog[] = (blogs || []).map((blog) => ({
+    id: blog.id,
+    title: blog.title,
+    description: blog.content,
+    imageUrl: blog.image,
+    date: blog.published_at,
+  }));
+
+  // Filter blogs based on search term
+  const filteredBlogs = transformedBlogs.filter(
     (blog) =>
       blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       blog.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -91,7 +108,12 @@ const MainBlog: React.FC<MainBlogProps> = ({ BlogData = BlogDataSource }) => {
                 </Typography>
                 <div className="flex items-center justify-between pt-3">
                   <p className="text-gray-500 text-[14px]">{blog.date}</p>
-                  <CustomButton txt="Read more" to={`/blog/${blog.id}`} btnStyle="md:py-[7px] py-[5px]" txtStyle="md:text-[13px] text-[10px] uppercase"/>
+                  <CustomButton
+                    txt="Read more"
+                    to={`/blog/${blog.id}`}
+                    btnStyle="md:py-[7px] py-[5px]"
+                    txtStyle="md:text-[13px] text-[10px] uppercase"
+                  />
                 </div>
               </div>
             </Card>

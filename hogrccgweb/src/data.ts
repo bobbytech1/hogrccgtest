@@ -180,7 +180,7 @@ export interface EventData {
       id: 3,
       imageUrl: "https://via.placeholder.com/300x200",
       title: "Worshipping God",
-      description: "Join us at any of our Sunday service locations around the Bay Area for engaging and faith-building message from the Bible, along with singing, fellowship, and classes for kids.",
+      description: "Join us at any of our Sunday service locations around the Bay Area for engaging and faith-building message from the Bible, along with singing, fellowship, and classes for kids. djhdjhdhjfshjfdjhfdkjdkjfdhjfdnmhjfdjhglkfdhjgklfdjhgklfdnmklfdhjgjkv",
       date: "December 1st, 2024",
     },
   ];

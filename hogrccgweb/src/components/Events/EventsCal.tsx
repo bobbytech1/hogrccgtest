@@ -118,7 +118,7 @@ const EventsCal = () => {
                 <div className="flex items-center justify-end pt-3">
                   <CustomButton
                     txt="view more"
-                    to="/events"
+                    to={`/events/${event.id}`}
                     btnStyle="md:py-[7px] py-[5px]"
                     txtStyle="md:text-[13px] text-[10px] uppercase"
                   />

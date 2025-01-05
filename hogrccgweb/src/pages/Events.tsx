@@ -15,7 +15,9 @@ const Events = () => {
             <NavBar />
             <div className="bg-[#F7F7F7]">
                 <EventIntro />
-                <FeaturedEvents />
+                <div className="sm:px-10 px-5 py-8">
+                <FeaturedEvents /> 
+                </div>
                 <EventsCal />
             </div>
             <Footer />

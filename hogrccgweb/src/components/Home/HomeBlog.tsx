@@ -4,15 +4,17 @@ import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import CustomButton from "../Button/CustomButton";
 import { usePageContent } from '../../hooks/usePageContent';
+import { getLatestBlogs, useBlogs } from "../../hooks/useBlogs";
 import { Box } from "@mui/joy";
 import { Link } from "react-router-dom";
-import { BlogData } from "../../data";
 
 const HomeBlog = () => {
   const { data, isLoading } = usePageContent('home-page');
+  const { data: blogs } = useBlogs();
   if (isLoading) return <div>Loading...</div>;
 
   const { section7 } = data?.content || {}; 
+  const latestBlogs = getLatestBlogs(blogs ?? []);
     return ( 
         <>
             <div className="mt-6 md:px-10 px-6">
@@ -45,12 +47,12 @@ const HomeBlog = () => {
         gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 400px), 1fr))',
         gap: 2,
       }}>
-        {BlogData.map((blog) => (
+        {latestBlogs.map((blog) => (
              <Card variant="outlined" sx={{backgroundColor: "#ffffff"}} key={blog.id}>
              <AspectRatio>
                  <div>
                      <img
-                         src={blog.imageUrl}
+                         src={blog.image}
                          className="h-[50vh]"
                          alt="Event Image"
                      />
@@ -84,13 +86,13 @@ const HomeBlog = () => {
                          fontSize: "14px",
                      }}
                  >
-                    {blog.description}
+                    {blog.content}
                  </Typography>
                  <div className="flex items-center justify-between pt-3 ">
                      <div className="flex items-center space-x-1">
-                     <p className="font-paragraphFont md:text-[14px] text-[10px]">{blog.date}</p>
+                     <p className="font-paragraphFont md:text-[14px] text-[10px]">{blog.published_at}</p>
                      </div>
-                 <CustomButton txt="Read more" to="/events" btnStyle="md:py-[7px] py-[5px]" txtStyle="md:text-[13px] text-[10px] uppercase"/>
+                 <CustomButton txt="Read more" to={`/blog/${blog.id}`} btnStyle="md:py-[7px] py-[5px]" txtStyle="md:text-[13px] text-[10px] uppercase"/>
                  </div>
              </div>
          </Card>

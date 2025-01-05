@@ -15,7 +15,7 @@ const FeaturedEvents = () => {
 
   return (
     <>
-      <div className="sm:px-10 px-5 py-8">
+      <div>
         <Box
           sx={{
             width: "100%",
@@ -79,7 +79,7 @@ const FeaturedEvents = () => {
                   <div className="flex items-center justify-end pt-3">
                     <CustomButton
                       txt="view more"
-                      to="/events"
+                      to={`/events/${event.id}`}
                       btnStyle="md:py-[7px] py-[5px]"
                       txtStyle="md:text-[13px] text-[10px] uppercase"
                     />

@@ -1,12 +1,16 @@
 import { FaChevronRight } from "react-icons/fa6";
 import CustomButton from "../Button/CustomButton";
 import { usePageContent } from '../../hooks/usePageContent';
+import { useSermons, getLatestSermon } from "../../hooks/useSermon";
 import { Link } from "react-router-dom";
 const HomeSermons = () => {
   const { data, isLoading } = usePageContent('home-page');
+  const { data: sermons } = useSermons();
+  
   if (isLoading) return <div>Loading...</div>;
 
   const { sermonSection } = data?.content || {}; 
+  const latestSermon = sermons ? getLatestSermon(sermons) : null;
   return (
     <>
       <div className="mt-6 mb-14 md:px-10 px-6">
@@ -39,7 +43,7 @@ const HomeSermons = () => {
             <iframe
               width="560"
               height="315"
-              src={sermonSection?.youtubeLink}
+              src={latestSermon?.video}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

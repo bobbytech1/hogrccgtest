@@ -1,10 +1,11 @@
 import { FaChevronRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { MinistriesData } from "../../data";
+import { useMinistries } from "../../hooks/useMinistries";
 import { usePageContent } from '../../hooks/usePageContent';
 import CustomButton from "../Button/CustomButton";
 const HomeMinistries = () => {
   const { data, isLoading } = usePageContent('home-page');
+  const { data: ministries} =  useMinistries()
   if (isLoading) return <div>Loading...</div>;
 
   const { section6 } = data?.content || {}; 
@@ -34,33 +35,41 @@ const HomeMinistries = () => {
           </div>
         </div>
 
-        {/* Ministries section */}
+                {/* Ministries Section */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-5">
+            {ministries?.map((ministry) => (
+              <div
+                key={ministry.id}
+                className="relative w-full rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105"
+              >
+                {/* Background Image */}
+                <img
+                  src={ministry.image}
+                  alt={ministry.title}
+                  className="w-full md:h-[80vh] h-[60vh] object-cover"
+                />
 
-        <div className="grid grid-cols-1 lgx:grid-cols-2 gap-8 mt-5">
-      {MinistriesData.map((ministry) => (
-        <div
-          key={ministry.id}
-          className="relative w-full rounded-lg overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105"
-        >
-          {/* Background Image */}
-          <img
-            src={ministry.imageUrl}
-            alt={ministry.title}
-            className="w-full md:h-[100vh] h-[80vh] object-cover"
-          />
-
-          {/* Overlay */}
-          {/* Overlay at the bottom */}
-          <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 flex items-start md:p-8 p-5">
-            <div className="text-white md:space-y-5 space-y-4">
-              <h3 className="font-headingFont md:text-[24px] text-[22px] font-semibold">{ministry.title}</h3>
-              <p className="font-paragraphFont md:text-[16px] text-[15px] font-normal">{ministry.description}</p>
-             <CustomButton txt="More Details" btnStyle="py-1" txtStyle="text-[14px]" to="/ministries" icon={<FaChevronRight/>}/>
-            </div>
+                {/* Overlay at the bottom */}
+                <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 flex items-start md:p-8 p-5">
+                  <div className="text-white md:space-y-5 space-y-4">
+                    <h3 className="font-headingFont md:text-[24px] text-[22px] font-semibold">
+                      {ministry.title}
+                    </h3>
+                    <p className="font-paragraphFont md:text-[16px] text-[15px] font-normal">
+                      {ministry.description}
+                    </p>
+                    <CustomButton
+                      txt="More Details"
+                      btnStyle="py-1"
+                      txtStyle="text-[14px]"
+                      to={`/ministries/${ministry.id}`}
+                      icon={<FaChevronRight />}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      ))}
-    </div>
 
             </div>
         </>
