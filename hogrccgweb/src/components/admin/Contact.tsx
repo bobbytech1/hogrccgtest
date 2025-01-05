@@ -56,7 +56,7 @@ const ContactTab: React.FC = () => {
       />
 
 
-      {/* PIC Section */}
+      {/* Contact Section */}
       <Section
         title="Contact Section"
         data={formData.conSection}

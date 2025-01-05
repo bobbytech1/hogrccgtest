@@ -1,53 +1,52 @@
 import { useState } from 'react';
-import { apiFetch } from '../../utils/api'
+import { apiFetch } from '../../../utils/api';
 
-const EventTab = () => {
-  const [eventData, setEventData] = useState({
+const BlogTab = () => {
+  const [blogData, setBlogData] = useState({
+    id: '', // Leave empty for creating a new blog
     title: '',
-    description: '',
-    time: '',
-    location: '',
+    content: '',
     image: '',
-    form_link: '',
-    date: '',
+    author: '',
+    published_at: '',
   });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setEventData({ ...eventData, [name]: value });
+    setBlogData({
+      ...blogData,
+      [name]: value,
+    });
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-  
+
     try {
-      const response = await apiFetch('http://localhost:3000/api/admin/events/add', {
+      const response = await apiFetch('http://localhost:3000/api/admin/blog', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(eventData),
+        body: JSON.stringify(blogData),
       });
-  
-      // If the response is an object, skip checking for headers
+
       if (response && response.message) {
-        alert(response.message || 'Event saved successfully!');
+        alert(response.message || 'Blog successfully saved!');
         window.location.reload();
-        setEventData({
+        setBlogData({
+          id: '',
           title: '',
-          description: '',
-          time: '',
-          location: '',
+          content: '',
           image: '',
-          form_link: '',
-          date: '',
+          author: '',
+          published_at: '',
         });
       } else {
         alert('An unexpected error occurred.');
       }
-  
     } catch (error) {
       console.error('Network error. Please try again.', error);
       alert('Network error. Please try again.');
@@ -55,87 +54,73 @@ const EventTab = () => {
       setLoading(false);
     }
   };
-  
-  
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-gray-700 mb-4">Create or Update Event</h2>
-
+    <div className="bg-white p-6 shadow-md rounded-lg">
+      <h2 className="text-2xl font-bold mb-4">Create or Update Blog</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
-          name="title"
-          value={eventData.title}
+          name="id"
+          value={blogData.id}
           onChange={handleChange}
-          placeholder="Event Title"
+          placeholder="Blog ID (leave empty for new blog)"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          type="text"
+          name="title"
+          value={blogData.title}
+          onChange={handleChange}
+          placeholder="Blog Title"
           className="w-full p-2 border rounded-md"
           required
         />
         <textarea
-          name="description"
-          value={eventData.description}
+          name="content"
+          value={blogData.content}
           onChange={handleChange}
-          placeholder="Event Description"
+          placeholder="Blog Content"
           className="w-full p-2 border rounded-md"
-          rows={4}
+          rows={8}
           required
-        />
+        ></textarea>
         <input
-          type="text"
-          name="time"
-          value={eventData.time}
-          onChange={handleChange}
-          placeholder="Event Time"
-          className="w-full p-2 border rounded-md"
-          required
-        />
-        <input
-          type="text"
-          name="location"
-          value={eventData.location}
-          onChange={handleChange}
-          placeholder="Event Location"
-          className="w-full p-2 border rounded-md"
-          required
-        />
-        <input
-          type="text"
+          type="url"
           name="image"
-          value={eventData.image}
+          value={blogData.image}
           onChange={handleChange}
           placeholder="Image URL"
           className="w-full p-2 border rounded-md"
         />
         <input
           type="text"
-          name="form_link"
-          value={eventData.form_link}
+          name="author"
+          value={blogData.author}
           onChange={handleChange}
-          placeholder="Form Link (optional)"
-          className="w-full p-2 border rounded-md"
-        />
-        <input
-          type="date"
-          name="date"
-          value={eventData.date}
-          onChange={handleChange}
-          placeholder="Event Date"
+          placeholder="Author Name"
           className="w-full p-2 border rounded-md"
           required
         />
+        <input
+          type="datetime-local"
+          name="published_at"
+          value={blogData.published_at}
+          onChange={handleChange}
+          className="w-full p-2 border rounded-md"
+        />
         <button
           type="submit"
-          className={`w-full p-2 text-white rounded-md ${
+          className={`w-full py-2 text-white rounded-md ${
             loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-700 hover:bg-blue-800'
           }`}
           disabled={loading}
         >
-          {loading ? 'Saving...' : 'Save Event'}
+          {loading ? 'Saving...' : 'Save Blog'}
         </button>
       </form>
     </div>
   );
 };
 
-export default EventTab;
+export default BlogTab;

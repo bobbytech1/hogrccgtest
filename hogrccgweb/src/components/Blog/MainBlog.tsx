@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Box, Card, Typography, AspectRatio } from "@mui/joy";
 import CustomButton from "../Button/CustomButton";
+import { usePageContentBlog } from '../../hooks/usePageContentBlog';
 import { useBlogs } from "../../hooks/useBlogs"; // Import the useBlogs hook
+
 
 interface Blog {
   id: number;
@@ -15,10 +17,14 @@ const MainBlog: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [visibleCount, setVisibleCount] = useState<number>(8);
 
-  const { data: blogs, isLoading, isError } = useBlogs(); // Use the hook
+  const { data: blogs, isLoading: loading, isError } = useBlogs(); // Use the hook
 
+        const { data, isLoading } = usePageContentBlog('blog-page');
+      
+        if (isLoading) return <div>Loading...</div>;
+        const {hero} = data?.content || {};
   // Handle loading state
-  if (isLoading) {
+  if (loading) {
     return <div className="text-center mt-8">Loading blogs...</div>;
   }
 
@@ -52,9 +58,9 @@ const MainBlog: React.FC = () => {
     <div className="bg-[#FFFFFF] pb-12 pt-6">
       {/* Hero Section */}
       <div className="px-6 md:px-10 text-center space-y-4">
-        <h1 className="font-headingFont text-[32px] font-bold">Welcome to Our Blog</h1>
+        <h1 className="font-headingFont text-[32px] font-bold">{hero?.heading}</h1>
         <p className="font-paragraphFont text-[18px] text-gray-600">
-          Discover stories, insights, and updates from our church community.
+          {hero?.paragraph}
         </p>
         <input
           type="text"

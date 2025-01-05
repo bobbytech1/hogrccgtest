@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { images } from "../../constants";
 import HomeTab from '../../components/admin/Home';
 import AboutTab from '../../components/admin/About';
-import EventTab from '../../components/admin/Event';
-import SermonTab from '../../components/admin/Sermon';
+import MainSermon from '../../components/admin/Sermon/MainSermon';
+import MainEvent from '../../components/admin/Events/MainEvent';
+import MainBlog from '../../components/admin/Blog/MainBlog';
 import MinistryTab from '../../components/admin/Ministry';
-import BlogTab from '../../components/admin/Blog';
 import ContactTab from '../../components/admin/Contact';
 import {logoutUser} from '../../utils/api'
 
@@ -104,11 +104,11 @@ const AdminDashboard: React.FC = () => {
         <div className="mt-6">
           {activeTab === 'Home' && <HomeTab/>}
           {activeTab === 'About' && <AboutTab/>}
-          {activeTab === 'Events' && <EventTab/>}
-          {activeTab === 'Sermons' && <SermonTab/>}
+          {activeTab === 'Events' && <MainEvent/>}
+          {activeTab === 'Sermons' && <MainSermon/>}
           {activeTab === 'Online Giving' && <div>Coming soon...</div>}
           {activeTab === 'Ministries' && <MinistryTab/>}
-          {activeTab === 'Blog' && <BlogTab />}
+          {activeTab === 'Blog' && <MainBlog />}
           {activeTab === 'Contact' && <ContactTab/>}
         </div>
       </main>
