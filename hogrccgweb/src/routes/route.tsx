@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import PrivateRoutes from "./privateRoutes";
-import PublicRoutes from "./publicRoutes";
 import ScrollToTop from "./Scroll";
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -22,7 +21,6 @@ const FolderRoute = () => {
     <>
       <ScrollToTop />
       <Routes>
-        <Route element={<PublicRoutes />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/events" element={<Events />} />
@@ -34,8 +32,7 @@ const FolderRoute = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetails />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/admin" element={<AdminLogin />} />
-        </Route>
+          <Route path="/hogadmin" element={<AdminLogin />} />
 
         <Route element={<PrivateRoutes />}>
           <Route path="/admindash" element={<AdminDashboard />} />

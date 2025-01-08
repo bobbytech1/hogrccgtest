@@ -17,10 +17,11 @@ interface Event {
 }
 
 const EventDetails = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const { id } = useParams();
 
   const fetchEventById = async (id: string): Promise<Event> => {
-    const response = await fetch(`http://localhost:3000/api/admin/events/${id}`);
+    const response = await fetch(`${apiUrl}api/admin/events/${id}`);
     if (!response.ok) {
       throw new Error("Failed to fetch event");
     }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { apiFetch } from '../../utils/api'; // Assuming you have the same utility function for API requests
 
 const MinistryTab = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [ministryData, setMinistryData] = useState({
     id: '', // Leave empty for creating a new ministry
     title: '',
@@ -24,7 +25,7 @@ const MinistryTab = () => {
     setLoading(true);
 
     try {
-      const response = await apiFetch('https://hogrccgtest.onrender.com/api/admin/ministry', {
+      const response = await apiFetch(`${apiUrl}api/admin/ministry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

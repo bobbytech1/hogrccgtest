@@ -29,7 +29,7 @@ export const apiFetch = async (
         localStorage.removeItem('loggedIn');
 
         if (navigate) {
-          navigate('/admin'); // Redirect to admin login page
+          navigate('/hogadmin'); // Redirect to admin login page
         }
         return null; // Return null if unauthorized and refresh fails
       }
@@ -70,8 +70,9 @@ export const apiFetch = async (
 
 // Refresh access token
 const refreshAccessToken = async (): Promise<boolean> => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   try {
-    const response = await fetch('http://localhost:3000/api/auth/refresh-token', {
+    const response = await fetch(`${apiUrl}api/auth/refresh-token`, {
       method: 'POST',
       credentials: 'include', // Include cookies
     });
@@ -89,8 +90,9 @@ const refreshAccessToken = async (): Promise<boolean> => {
 
 // Logout user
 export const logoutUser = async (): Promise<void> => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   try {
-    await fetch('http://localhost:3000/api/auth/logout', {
+    await fetch(`${apiUrl}api/auth/logout`, {
       method: 'POST',
       credentials: 'include',
     });

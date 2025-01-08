@@ -16,7 +16,8 @@ interface Sermon {
 
 // Fetch function to get sermons data
 const fetchSermons = async (): Promise<Sermon[]> => {
-  const response = await fetch('https://hogrccgtest.onrender.com/api/admin/sermon');
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const response = await fetch(`${apiUrl}api/admin/sermon`);
   if (!response.ok) throw new Error('Failed to fetch sermons');
   const data = await response.json();
   return data.sermons; // Return the array of sermons

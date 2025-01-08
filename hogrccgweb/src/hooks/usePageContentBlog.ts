@@ -17,12 +17,12 @@ interface Hero {
 
 // Function to fetch page content
 const fetchPageContent = async (slug: string): Promise<PageContent> => {
-    const response = await fetch(`https://hogrccgtest.onrender.com/api/admin/pages/${slug}`);
+  const apiUrl = import.meta.env.VITE_API_URL;
+    const response = await fetch(`${apiUrl}api/admin/pages/${slug}`);
     if (!response.ok) throw new Error('Failed to fetch content');
     return response.json();
   };
 
-// Hook to fetch and cache page content
 // Hook to fetch and cache page content
 export const usePageContentBlog = (slug: string) => {
     return useQuery<PageContent>({

@@ -17,6 +17,7 @@ export default {
         hogblue: "#0045B5"
       },
       screens :{
+        'xxim': "320px",
         'xxm': "380px",
         'xsm': "400px",
         'xssm': "480px",
@@ -26,6 +27,7 @@ export default {
       animation: {
         slideDown: 'slideDown 0.7s ease-in-out',
         'pulse-out': 'pulse-out 1s ease-in-out infinite',
+        'spin-slow': 'spin 3s linear infinite'
       },
       keyframes: {
         slideDown: {

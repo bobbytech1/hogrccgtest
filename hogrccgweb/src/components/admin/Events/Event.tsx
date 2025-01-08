@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { apiFetch } from '../../../utils/api'
 
 const EventTab = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [eventData, setEventData] = useState({
     title: '',
     description: '',
@@ -23,7 +24,7 @@ const EventTab = () => {
     setLoading(true);
   
     try {
-      const response = await apiFetch('https://hogrccgtest.onrender.com/api/admin/events/add', {
+      const response = await apiFetch(`${apiUrl}api/admin/events/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

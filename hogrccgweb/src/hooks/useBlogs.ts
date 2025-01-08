@@ -14,7 +14,8 @@ interface Blog {
 
 // Fetch function to get Blog data
 const fetchBlogs = async (): Promise<Blog[]> => {
-    const response = await fetch('https://hogrccgtest.onrender.com/api/admin/blog');
+  const apiUrl = import.meta.env.VITE_API_URL;
+    const response = await fetch(`${apiUrl}api/admin/blog`);
     if (!response.ok) throw new Error('Failed to fetch blogs');
     const data = await response.json();
     return data.blogs; // Return the array of blogs

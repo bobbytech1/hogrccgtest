@@ -36,7 +36,7 @@ const AdminDashboard: React.FC = () => {
     try {
       await logoutUser();
       // Navigate to login page after successful logout
-      navigate('/admin');
+      navigate('/hogadmin');
     } catch (error) {
       console.error('Failed to log out:', error);
     }

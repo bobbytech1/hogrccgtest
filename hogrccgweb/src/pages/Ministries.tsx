@@ -1,4 +1,5 @@
 import NavBar from "../components/Header/NavBar";
+import Loader from "../components/Loader";
 import { FaChevronRight } from "react-icons/fa";
 import { useMinistries } from "../hooks/useMinistries";
 import { usePageContent } from '../hooks/usePageContent';
@@ -9,8 +10,9 @@ const Ministries = () => {
   const { data: ministries, isLoading, error } = useMinistries();
   const { data } = usePageContent('home-page');
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div><Loader /></div>;
   }
+  if (error) return <div className="flex justify-center items-center md:text-[30px] text-[20px] font-bold text-center h-screen font-headingFont">Network Error Could not Load Resources</div>;
 
   const { section6 } = data?.content || {}; 
   if (error) {

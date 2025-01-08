@@ -14,7 +14,8 @@ interface Blog {
 
 // Function to fetch blog details by ID
 const fetchBlogById = async (id: string): Promise<Blog> => {
-  const response = await fetch(`http://localhost:3000/api/admin/blog/${id}`);
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const response = await fetch(`${apiUrl}api/admin/blog/${id}`);
   if (!response.ok) {
     throw new Error("Failed to fetch blog");
   }

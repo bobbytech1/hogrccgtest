@@ -2,6 +2,7 @@ import NavBar from "../components/Header/NavBar";
 import Hero from "../components/Home/Hero";
 import Welcome from "../components/Home/Welcome";
 import useNavbar from "../hooks/useNavbar";
+import Loader from "../components/Loader";
 import { usePageContent } from '../hooks/usePageContent';
 import ImageCarousel from "../components/Home/ImageCarousel"; 
 import UpcomingEvents from "../components/Home/UpcomingEvents";
@@ -14,8 +15,8 @@ import Footer from "../components/Footer/Footer";
 const Home = () => {
     const {isFixed} = useNavbar()
     const { isLoading, isError } = usePageContent('home-page');
-    if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div className="flex justify-center items-center md:text-[30px] text-[20px] font-bold text-center">Network Error Could not Load Resources</div>;
+    if (isLoading) return <div><Loader /></div>;
+    if (isError) return <div className="flex justify-center items-center md:text-[30px] text-[20px] font-bold text-center h-screen font-headingFont">Network Error Could not Load Resources</div>;
     return ( 
         <>
            <div>

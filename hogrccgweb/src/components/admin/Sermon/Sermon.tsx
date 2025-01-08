@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { apiFetch } from '../../../utils/api';
 
 const SermonTab = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [sermonData, setSermonData] = useState({
     id: '', // Leave empty for creating a new sermon
     title: '',
@@ -27,7 +28,7 @@ const SermonTab = () => {
     setLoading(true);
 
     try {
-      const response = await apiFetch('https://hogrccgtest.onrender.com/api/admin/sermon', {
+      const response = await apiFetch(`${apiUrl}api/admin/sermon`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

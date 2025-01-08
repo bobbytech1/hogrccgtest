@@ -2,6 +2,7 @@ import { useState } from "react";
 import { apiFetch } from "../utils/api";
 
 const usePostPageContent = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -12,7 +13,7 @@ const usePostPageContent = () => {
     setSuccess(null);
 
     try {
-      const response = await apiFetch("https://hogrccgtest.onrender.com/api/admin/pages/post", {
+      const response = await apiFetch(`${apiUrl}api/admin/pages/post`, {
         method: "POST",
         credentials: "include", // Send cookies with the request
         headers: {

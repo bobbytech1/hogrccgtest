@@ -12,7 +12,8 @@ interface Ministry {
 }
 
 const fetchMinistries = async (): Promise<Ministry[]> => {
-    const response = await fetch('https://hogrccgtest.onrender.com/api/admin/ministries');
+  const apiUrl = import.meta.env.VITE_API_URL;
+    const response = await fetch(`${apiUrl}api/admin/ministries`);
     if (!response.ok) throw new Error('Failed to fetch Ministries');
     const data = await response.json();
     return data.ministries; // Access the correct key

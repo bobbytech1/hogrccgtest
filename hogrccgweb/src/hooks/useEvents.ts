@@ -16,7 +16,8 @@ interface Event {
 
 // Fetch function to get events data
 const fetchEvents = async (): Promise<Event[]> => {
-  const response = await fetch('https://hogrccgtest.onrender.com/api/admin/events');
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const response = await fetch(`${apiUrl}api/admin/events`);
   if (!response.ok) throw new Error('Failed to fetch events');
   return response.json();
 };

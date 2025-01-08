@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { apiFetch } from '../../../utils/api';
 
 const BlogTab = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [blogData, setBlogData] = useState({
     id: '', // Leave empty for creating a new blog
     title: '',
@@ -25,7 +26,7 @@ const BlogTab = () => {
     setLoading(true);
 
     try {
-      const response = await apiFetch('http://localhost:3000/api/admin/blog', {
+      const response = await apiFetch(`${apiUrl}api/admin/blog`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

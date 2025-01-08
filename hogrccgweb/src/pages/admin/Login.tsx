@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { apiFetch } from "../../utils/api";
 
 const AdminLogin: React.FC = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const AdminLogin: React.FC = () => {
   
     try {
       await apiFetch(
-        'http://localhost:3000/api/auth/login',
+        `${apiUrl}api/auth/login`,
         {
           method: 'POST',
           headers: {
