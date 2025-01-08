@@ -1,4 +1,5 @@
 import NavBar from "../Header/NavBar";
+import Loader from "../Loader";
 import Footer from "../Footer/Footer";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -15,7 +16,8 @@ interface Ministry {
 
 // Function to fetch ministry details by ID
 const fetchMinistryById = async (id: string): Promise<Ministry> => {
-  const response = await fetch(`http://localhost:3000/api/admin/ministry/${id}`);
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const response = await fetch(`${apiUrl}api/admin/ministry/${id}`);
   if (!response.ok) {
     throw new Error("Failed to fetch ministry");
   }
@@ -33,9 +35,9 @@ const MinistryDetails = () => {
     refetchOnWindowFocus: false,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error fetching ministry details.</p>;
-  if (!ministry) return <p>No ministry found.</p>;
+  if (isLoading) return <div><Loader /></div>;
+  if (error) return <div className="flex justify-center items-center md:text-[30px] text-[20px] font-bold text-center h-screen font-headingFont">Error loading blog details.</div>;
+  if (!ministry) return <div className="flex justify-center items-center md:text-[30px] text-[20px] font-bold text-center h-screen font-headingFont">No blog found.</div>;
 
   return (
     <>

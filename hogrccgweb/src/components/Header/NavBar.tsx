@@ -88,9 +88,9 @@ const NavBar: React.FC<CustomNavProps> = ({ headerStyle }) => {
 
     {/* Social Icons */}
     <div className="flex justify-center items-center space-x-4 pt-10">
-      <FaFacebook className="text-black text-[40px] w-19 rounded-full py-2   bg-white" />
-      <FaInstagram className="text-black text-[40px] w-19 rounded-full py-2  bg-white" />
-      <FaYoutube className="text-black text-[40px] w-19 rounded-full py-2  bg-white" />
+      <FaFacebook className="text-black text-[30px] w-19 rounded-full py-2   bg-white" />
+      <FaInstagram className="text-black text-[35px] w-19 rounded-full py-2  bg-white" />
+      <FaYoutube className="text-black  text-[30px] w-19 rounded-full py-2  bg-white" />
     </div>
     </div>
    

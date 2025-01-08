@@ -1,4 +1,5 @@
 import NavBar from "../Header/NavBar";
+import Loader from "../Loader";
 import Footer from "../Footer/Footer";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -35,9 +36,9 @@ const EventDetails = () => {
     refetchOnWindowFocus: false,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error fetching event details.</p>;
-  if (!event) return <p>No event found.</p>;
+  if (isLoading) return <div><Loader /></div>;
+  if (error) return <div className="flex justify-center items-center md:text-[30px] text-[20px] font-bold text-center h-screen font-headingFont">Error loading blog details.</div>;
+  if (!event) return <div className="flex justify-center items-center md:text-[30px] text-[20px] font-bold text-center h-screen font-headingFont">No blog found.</div>;
 
   return (
     <>
