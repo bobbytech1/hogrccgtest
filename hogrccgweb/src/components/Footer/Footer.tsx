@@ -58,7 +58,7 @@ const Footer = () => {
               <Link to="/ministries" className="hover:text-yellow-400 active:text-yellow-400 transition-all w-fit">Ministries</Link>
               <Link to="/sermons" className="hover:text-yellow-400 active:text-yellow-400 transition-all w-fit">Sermons</Link>
                 </div>
-                <div className="flex flex-col text-[20px]">
+                <div className="flex flex-col xssm:text-[22px] text-[24px]">
                 <Link to="/onlinegiving" className="hover:text-yellow-400 active:text-yellow-400 transition-all w-fit">Online Giving</Link>
               <Link to="/blog" className="hover:text-yellow-400 active:text-yellow-400 transition-all w-fit">Blog</Link>
               <Link to="/events" className="hover:text-yellow-400 active:text-yellow-400 transition-all w-fit">Events</Link>
