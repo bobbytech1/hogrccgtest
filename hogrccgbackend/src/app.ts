@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 // CORS configuration
 const corsOptions = {
-  origin: '*', // Replace with your frontend URL
+  origin: ['http://localhost:5173', 'https://hogrccgpreview.onrender.com'], // Replace with your frontend URL
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // Allow cookies to be sent across origins
